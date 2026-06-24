@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Creative Sandbox — Funky & Cute Cloud Art Gallery</title>
+    <meta name="description" content="A vibrant, funky, zero-local-storage cloud gallery and creative journal.">
+    <meta name="theme-color" content="#FF3366">
+    <link rel="manifest" href="manifest.json">
+    <!-- Google Fonts: Fredoka & Outfit for a bubbly, premium, funky aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app-container">
+        <!-- Main App Header -->
+        <header id="app-header" class="bubbly-header">
+            <div id="logo-container">
+                <div id="logo-icon">✨</div>
+                <h1 id="app-title">Creative Sandbox</h1>
+            </div>
+            <div id="header-actions">
+                <button id="cloud-status-btn" class="bubbly-btn small-btn cloud-badge" title="Cloud Storage Connected">
+                    <span id="cloud-icon">☁️</span>
+                    <span id="cloud-text">Cloud Sync</span>
+                </button>
+                <div id="user-avatar" class="bubbly-avatar">🎨</div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="main-content">
+            <!-- Hero / Greeting Section -->
+            <section id="hero-section">
+                <div id="hero-card" class="funky-card banner-card">
+                    <div id="hero-text">
+                        <h2 id="hero-heading">Your Digital Sticker Book! 🚀</h2>
+                        <p id="hero-subtitle">Snap physical art & upload directly to the cloud. Zero local phone storage
+                            used!</p>
+                    </div>
+                    <div id="hero-decoration">🌈</div>
+                </div>
+            </section>
+
+            <!-- Categorization / Tags Filter Bar -->
+            <section id="filter-section">
+                <div id="filter-scroll-container">
+                    <div id="tags-bar">
+                        <button id="tag-all" class="tag-btn active" data-tag="all">🌟 All Creations</button>
+                        <button id="tag-painting" class="tag-btn" data-tag="🎨 Painting">🎨 Painting</button>
+                        <button id="tag-doodles" class="tag-btn" data-tag="✏️ Doodles">✏️ Doodles</button>
+                        <button id="tag-mandalas" class="tag-btn" data-tag="🌀 Mandalas">🌀 Mandalas</button>
+                        <button id="tag-wireframes" class="tag-btn" data-tag="📱 Wireframes">📱 Wireframes</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section (Scrolling Visual Grid) -->
+            <section id="gallery-section">
+                <div id="gallery-grid" class="visual-grid">
+                    <!-- Dynamic Artwork Cards will be injected by JavaScript here -->
+                    <div id="empty-state" class="hidden">
+                        <div id="empty-icon">📂</div>
+                        <h3 id="empty-title">No artwork found!</h3>
+                        <p id="empty-desc">Tap the funky camera button below to snap your first creation.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Fixed Floating Action Button for One-Tap In-App Camera & Upload -->
+        <div id="floating-upload-container">
+            <!-- Hidden file input for capturing directly from camera/picker -->
+            <input type="file" id="camera-input" accept="image/*" capture="environment"
+                aria-label="Take Photo or Upload Image">
+            <button id="quick-camera-btn" class="bubbly-btn primary-bubbly-btn giant-btn" aria-label="Launch Camera">
+                <span id="btn-icon">📸</span>
+                <span id="btn-label">Snap Art</span>
+            </button>
+        </div>
+
+        <!-- Light Image Editing Modal / Screen -->
+        <div id="editor-modal" class="modal-backdrop hidden">
+            <div id="editor-card" class="funky-modal">
+                <div id="editor-header">
+                    <h2 id="editor-title">✨ Polish & Tag Your Art</h2>
+                    <button id="close-editor-btn" class="bubbly-btn close-btn">❌</button>
+                </div>
+
+                <div id="editor-body">
+                    <!-- Image Preview & Canvas Area -->
+                    <div id="canvas-container">
+                        <canvas id="edit-canvas"></canvas>
+                    </div>
+
+                    <!-- Editing Controls -->
+                    <div id="editing-controls" class="controls-panel">
+                        <div id="control-group-rotate" class="control-group">
+                            <label id="rotate-label">Rotate & Straighten</label>
+                            <div id="rotate-buttons">
+                                <button id="rotate-left-btn" class="bubbly-btn tool-btn">↩️ -90°</button>
+                                <button id="rotate-right-btn" class="bubbly-btn tool-btn">↪️ +90°</button>
+                                <button id="reset-edit-btn" class="bubbly-btn tool-btn secondary">🔄 Reset</button>
+                            </div>
+                            <div id="slider-container">
+                                <label for="straighten-slider" id="straighten-label">📐 Straighten Angle (<span
+                                        id="angle-display">0°</span>)</label>
+                                <input type="range" id="straighten-slider" min="-45" max="45" value="0" step="1">
+                            </div>
+                            <div id="zoom-slider-container">
+                                <label for="zoom-slider" id="zoom-label">🔍 Scale / Zoom (<span
+                                        id="zoom-display">100%</span>)</label>
+                                <input type="range" id="zoom-slider" min="100" max="200" value="100" step="5">
+                            </div>
+                        </div>
+
+                        <!-- Categorization / Tag Picker -->
+                        <div id="control-group-tags" class="control-group">
+                            <label id="select-tag-label">🏷️ Choose a Fun Category</label>
+                            <div id="modal-tags-selector">
+                                <button class="modal-tag-btn active" data-tag="🎨 Painting">🎨 Painting</button>
+                                <button class="modal-tag-btn" data-tag="✏️ Doodles">✏️ Doodles</button>
+                                <button class="modal-tag-btn" data-tag="🌀 Mandalas">🌀 Mandalas</button>
+                                <button class="modal-tag-btn" data-tag="📱 Wireframes">📱 Wireframes</button>
+                            </div>
+                        </div>
+
+                        <!-- Artwork Metadata / Notes -->
+                        <div id="control-group-metadata" class="control-group">
+                            <label for="artwork-title-input" id="meta-label">✍️ Artwork Title & Notes</label>
+                            <input type="text" id="artwork-title-input" placeholder="e.g., Late night coffee doodle..."
+                                maxlength="60">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="editor-footer">
+                    <button id="upload-cloud-btn" class="bubbly-btn primary-bubbly-btn full-width-btn">
+                        <span id="upload-btn-icon">🚀</span>
+                        <span id="upload-btn-label">Save Directly to Cloud</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Toast Notification -->
+        <div id="toast-notification" class="bubbly-toast hidden">
+            <span id="toast-icon">🎉</span>
+            <span id="toast-message">Uploaded successfully to cloud!</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Register Service Worker for Offline PWA Support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(reg => {
+                    console.log('Offline support activated!', reg.scope);
+                }).catch(err => {
+                    console.log('Service Worker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{
+    "name": "Creative Sandbox",
+    "short_name": "Sandbox",
+    "description": "A vibrant, funky cloud gallery and creative journal.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#FFFDF8",
+    "theme_color": "#FF3366",
+    "icons": [
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7inKjPC90ZXh0Pjwvc3ZnPg==",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7inKjPC90ZXh0Pjwvc3ZnPg==",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}
