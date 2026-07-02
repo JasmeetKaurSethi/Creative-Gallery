@@ -145,9 +145,9 @@ body {
 }
 
 .banner-card {
-    background: var(--sunny-yellow);
-    border-radius: 100px; /* Oval shape */
-    padding: 30px 40px;
+    background-color: var(--purple-magic);
+    border-radius: 48px; /* Highly rounded aesthetic widget */
+    padding: 32px 36px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -158,32 +158,39 @@ body {
 }
 
 #hero-text {
-    max-width: 80%;
+    max-width: 75%;
     z-index: 1;
 }
 
 #hero-heading {
     font-family: var(--font-heading);
-    font-size: 1.55rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    color: #3C2A21;
-    margin-bottom: 6px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    line-height: 1.2;
 }
 
 #hero-subtitle {
+    font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #63544D;
-    line-height: 1.4;
+    color: #4A4A4A;
+    line-height: 1.5;
     font-weight: 500;
 }
 
 #hero-decoration {
-    font-size: 3.5rem;
-    position: absolute;
-    right: 12px;
-    bottom: -10px;
-    opacity: 0.85;
-    transform: rotate(-15deg);
+    font-size: 2.4rem;
+    background-color: white;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Perfect circle */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+    z-index: 1;
 }
 
 /* Tag Filters */
